@@ -5,28 +5,27 @@ import { editPost, getDetailPost } from "@/app/Blog_API";
 import { Post } from "@/app/type";
 
 
-const EditPost = ( { params }: { params: { id: string } }) => {
-  const getpost= async (params: { id: string; }) => {
-    const detailPost = await getDetailPost(params.id);
-    console.log(detailPost)
-    return detailPost;
-  }
-  // useEffect(() => {
-  //   // コンポーネントのマウント時に既存の投稿データを取得
-  //   const fetchData = async () => {
-  //     try {
-  //       const detailPost = await getDetailPost(params.id);
-  //       setTitle(detailPost.title);
-  //       setContent(detailPost.content);
-  //     } catch (error) {
-  //       console.error("投稿の取得に失敗しました", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [params.id]); // params.idが変更された場合に再度実行
+
+const EditPost = ({ params }: { params: { id: string } }) => {
+  
+  useEffect(() => {
+    // コンポーネントのマウント時に既存の投稿データを取得
+    const fetchData = async () => {
+      try {
+        const detailPost = await getDetailPost(params.id);
+        setTitle(detailPost.title);
+        setContent(detailPost.content);
+      } catch (error) {
+        console.error("投稿の取得に失敗しました", error);
+      }
+    };
+    fetchData();
+  }, [params.id]); // params.idが変更された場合に再度実行
+
+
   const router = useRouter();
-  const [title, setTitle] = useState(detailPost.id);
-  const [content, setContent] = useState(detailPost.content);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

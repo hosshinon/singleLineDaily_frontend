@@ -1,7 +1,7 @@
-import { Post } from "./type";
+import { Todo } from "./type";
 
 //記事一覧取得
-export const getPosts = async ():Promise<Post[]> => {
+export const getTodos = async ():Promise<Todo[]> => {
   const res = await fetch("http://127.0.0.1:3001/api/v1/posts", {
     cache: "no-store",
   });
@@ -11,15 +11,15 @@ export const getPosts = async ():Promise<Post[]> => {
   }
 
   //await new Promise((resolve) => setTimeout(resolve, 1000));
-  const posts = await res.json();
-  // console.log(posts);
-  return posts;
+  const Todos = await res.json();
+  // console.log(Todos);
+  return Todos;
 };
 
 //記事詳細取得
-export const getDetailPost = async(id:string):Promise<Post> => {
+export const getDetailTodo = async(id:string):Promise<Todo> => {
   const res = await fetch(`http://127.0.0.1:3001/api/v1/posts/${id}`, {
-    next: { revalidate: 3600 },
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -27,13 +27,13 @@ export const getDetailPost = async(id:string):Promise<Post> => {
   }
 
   //await new Promise((resolve) => setTimeout(resolve, 1000));
-  const posts = await res.json();
-  //console.log(posts);
-  return posts;
+  const Todos = await res.json();
+  //console.log(Todos);
+  return Todos;
 };
 
 //記事投稿
-export const createPost = async(title:string,content:string):Promise<Post> => {
+export const createTodo = async(title:string,content:string):Promise<Todo> => {
   
   const res = await fetch("http://127.0.0.1:3001/api/v1/posts", {
     method: "POST",
@@ -50,13 +50,13 @@ export const createPost = async(title:string,content:string):Promise<Post> => {
   }
 
   //await new Promise((resolve) => setTimeout(resolve, 1000));
-  const newPost = await res.json();
-  //console.log(posts);
-  return newPost;
+  const newTodo = await res.json();
+  //console.log(Todos);
+  return newTodo;
 };
 
 //記事削除
-export const deletePost = async(id:string):Promise<Post> => {
+export const deleteTodo = async(id:string):Promise<Todo> => {
   
   const res = await fetch(`http://127.0.0.1:3001/api/v1/posts/${id}`, {
     method: "DELETE",
@@ -69,13 +69,13 @@ export const deletePost = async(id:string):Promise<Post> => {
   }
 
   //await new Promise((resolve) => setTimeout(resolve, 1000));
-  const deletePost = await res.json();
-  //console.log(posts);
-  return deletePost;
+  const deleteTodo = await res.json();
+  //console.log(Todos);
+  return deleteTodo;
 };
 
 //記事編集
-export const editPost = async(id:string,title:string,content:string):Promise<Post> => {
+export const editTodo = async(id:string,title:string,content:string):Promise<Todo> => {
   
   const res = await fetch(`http://127.0.0.1:3001/api/v1/posts/${id}`, {
     method: "PUT",
@@ -92,7 +92,7 @@ export const editPost = async(id:string,title:string,content:string):Promise<Pos
   }
 
   //await new Promise((resolve) => setTimeout(resolve, 1000));
-  const editPost = await res.json();
-  //console.log(posts);
-  return editPost;
+  const editTodo = await res.json();
+  //console.log(Todos);
+  return editTodo;
 };

@@ -1,4 +1,4 @@
-export type Post= {
+export type Todo= {
 	id: string;
 	title: string;
 	content: string;

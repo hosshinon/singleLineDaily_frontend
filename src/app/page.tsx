@@ -1,29 +1,22 @@
-import Image from "next/image";
-import { getPosts } from "./Blog_API";
-import Link from "next/link";
-import PostList from "./PostList";
-import EditPost from "./[id]/edit-post/page";
-import DeletePost from "./delete-post/page";
+import React from "react";
+import AddTask from "./component/AddTask";
+import TodoList from "./component/TodoList";
+import { getTodos } from "./Blog_API";
 
 export default async function Home() {
-  const posts = await getPosts();
-
+  const todos = await getTodos();
+  //console.log(todos);
   return (
-    <div>
-      <div>
-        <h1>Rails&Next.jsブログ</h1>
-        <Link href='/create-post'>投稿を作成</Link>
-      </div>
-      {posts.map((post) => (
-        <div key={post.id}>
-          <Link href={`/${post.id}`}>
-            <h2>{post.title}</h2>
-          </Link>
-          <p>{post.content}</p>
-          <Link href={`/${post.id}/edit-post`} >編集</Link>
-          <DeletePost />
+    <main className='bg-gray-200 flex flex-col justify-center items-center min-h-screen py-2'>
+      <h1 className='text-4xl font-bold text-gray-600 -mt-32 '>
+        ひとこと日記 using by Next.js & RailsAPI
+      </h1>
+      <div className='w-full max-w-xl mt-5 '>
+        <div className="w-full px-8 py-6 bg-white shadow-md rounded-lg duration-500">
+          <AddTask />
+          <TodoList todos={todos} />
         </div>
-      ))}
-    </div>
+      </div>
+    </main>
   );
 }
