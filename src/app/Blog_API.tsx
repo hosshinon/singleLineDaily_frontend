@@ -56,10 +56,13 @@ export const createTodo = async(title:string,content:string):Promise<Todo> => {
 };
 
 //記事削除
-export const deleteTodo = async(id:string):Promise<Todo> => {
+export const deleteTodo = async(id:string):Promise<void> => {
   
   const res = await fetch(`http://127.0.0.1:3001/api/v1/posts/${id}`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   console.log(res)
@@ -68,10 +71,6 @@ export const deleteTodo = async(id:string):Promise<Todo> => {
     throw new Error("エラーが発生しました");
   }
 
-  //await new Promise((resolve) => setTimeout(resolve, 1000));
-  const deleteTodo = await res.json();
-  //console.log(Todos);
-  return deleteTodo;
 };
 
 //記事編集
