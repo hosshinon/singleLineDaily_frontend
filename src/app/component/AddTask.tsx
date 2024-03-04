@@ -40,7 +40,7 @@ const AddTask = () => {
         value={content}
       />
       <button className='w-full px-4 py-2 text-white bg-blue-500 rounded transform  hover:bg-blue-400 hover:scale-95'>
-        AddTask
+        メッセージを追加
       </button>
     </form>
   );
