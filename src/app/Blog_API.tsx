@@ -1,8 +1,11 @@
 import { Todo } from "./type";
 
+const API_ENDPOINT =
+  process.env.REACT_APP_API_ENDPOINT || "http://127.0.0.1:3001";
+
 //記事一覧取得
 export const getTodos = async ():Promise<Todo[]> => {
-  const res = await fetch("http://127.0.0.1:3001/api/v1/posts", {
+  const res = await fetch(`${API_ENDPOINT}/api/v1/posts`, {
     cache: "no-store",
   });
 
@@ -18,7 +21,7 @@ export const getTodos = async ():Promise<Todo[]> => {
 
 //記事詳細取得
 export const getDetailTodo = async(id:string):Promise<Todo> => {
-  const res = await fetch(`http://127.0.0.1:3001/api/v1/posts/${id}`, {
+  const res = await fetch(`${API_ENDPOINT}/api/v1/posts/${id}`, {
     cache: "no-store",
   });
 
@@ -35,7 +38,7 @@ export const getDetailTodo = async(id:string):Promise<Todo> => {
 //記事投稿
 export const createTodo = async(title:string,content:string):Promise<Todo> => {
   
-  const res = await fetch("http://127.0.0.1:3001/api/v1/posts", {
+  const res = await fetch(`${API_ENDPOINT}/api/v1/posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -58,7 +61,7 @@ export const createTodo = async(title:string,content:string):Promise<Todo> => {
 //記事削除
 export const deleteTodo = async(id:string):Promise<void> => {
   
-  const res = await fetch(`http://127.0.0.1:3001/api/v1/posts/${id}`, {
+  const res = await fetch(`${API_ENDPOINT}/api/v1/posts/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -76,7 +79,7 @@ export const deleteTodo = async(id:string):Promise<void> => {
 //記事編集
 export const editTodo = async(id:string,title:string,content:string):Promise<Todo> => {
   
-  const res = await fetch(`http://127.0.0.1:3001/api/v1/posts/${id}`, {
+  const res = await fetch(`${API_ENDPOINT}/api/v1/posts/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
