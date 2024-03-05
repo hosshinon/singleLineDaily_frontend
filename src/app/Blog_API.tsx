@@ -1,7 +1,7 @@
 import { Todo } from "./type";
 
 const API_ENDPOINT =
-  process.env.REACT_APP_API_ENDPOINT || "http://127.0.0.1:3001";
+  process.env.NEXT_PUBLIC_API_ENDPOINT || "http://127.0.0.1:3001";
 
 //記事一覧取得
 export const getTodos = async ():Promise<Todo[]> => {
