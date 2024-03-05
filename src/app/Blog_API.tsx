@@ -15,7 +15,6 @@ export const getTodos = async ():Promise<Todo[]> => {
 
   //await new Promise((resolve) => setTimeout(resolve, 1000));
   const Todos = await res.json();
-  // console.log(Todos);
   return Todos;
 };
 
@@ -31,7 +30,6 @@ export const getDetailTodo = async(id:string):Promise<Todo> => {
 
   //await new Promise((resolve) => setTimeout(resolve, 1000));
   const Todos = await res.json();
-  //console.log(Todos);
   return Todos;
 };
 
@@ -46,15 +44,12 @@ export const createTodo = async(title:string,content:string):Promise<Todo> => {
     body: JSON.stringify({ title, content }),
   });
 
-  console.log(res)
-
   if (!res.ok) {
     throw new Error("エラーが発生しました");
   }
 
   //await new Promise((resolve) => setTimeout(resolve, 1000));
   const newTodo = await res.json();
-  //console.log(Todos);
   return newTodo;
 };
 
@@ -85,7 +80,6 @@ export const editTodo = async(id:string,title:string,content:string):Promise<Tod
     body: JSON.stringify({ title, content }),
   });
 
-  // console.log(id,title,content)
 
   if (!res.ok) {
     throw new Error("エラーが発生しました");
@@ -93,6 +87,5 @@ export const editTodo = async(id:string,title:string,content:string):Promise<Tod
 
   //await new Promise((resolve) => setTimeout(resolve, 1000));
   const editTodo = await res.json();
-  //console.log(Todos);
   return editTodo;
 };
