@@ -80,8 +80,6 @@ export const deleteTodo = async(id:string):Promise<void> => {
     }
   );
 
-  console.log(res)
-
   if (!res.ok) {
     throw new Error("エラーが発生しました");
   }
